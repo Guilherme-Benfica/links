@@ -38,11 +38,12 @@
     section.id = provider.id;
 
     var head = el('div', 'provider-head');
-    var title = el('h2', null, provider.name);
-    head.appendChild(title);
+    var titles = el('div');
+    titles.appendChild(el('h2', null, provider.name));
+    if (provider.tagline) titles.appendChild(el('p', 'tagline', provider.tagline));
+    head.appendChild(titles);
     head.appendChild(el('span', 'count', provider.certs.length + 'x'));
     section.appendChild(head);
-    if (provider.tagline) section.appendChild(el('p', 'tagline', provider.tagline));
 
     var sorted = provider.certs.slice().sort(function (a, b) {
       return (b.udemy ? 1 : 0) - (a.udemy ? 1 : 0);
