@@ -3,105 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
   <title>Guilherme Benfica | Certificações Cloud</title>
-  <meta name="description" content="Certificações AWS, Azure, Google Cloud, Oracle e GitHub, e conteúdo técnico de Guilherme Benfica.">
+  <meta name="description" content="Certificações AWS, Azure, Google Cloud, Oracle e GitHub, simulados na Udemy e conteúdo técnico de Guilherme Benfica.">
   <meta property="og:title" content="Guilherme Benfica | Certificações Cloud">
-  <meta property="og:description" content="Certificações cloud e conteúdo técnico em um só lugar.">
+  <meta property="og:description" content="Certificações cloud, simulados e conteúdo técnico em um só lugar.">
+  <meta property="og:type" content="profile">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="container">
-    <header class="profile">
-      <img class="avatar" src="foto.jpg" alt="Foto de Guilherme Benfica" onerror="this.style.display='none'">
+
+    <header class="hero">
+      <div class="avatar" aria-hidden="true">
+        <span>GB</span>
+        <img src="foto.jpg" alt="" onerror="this.remove()">
+      </div>
       <h1>Guilherme Benfica</h1>
-      <p class="bio">AWS Golden Jacket 🧥<br>37 certificações em AWS, Azure, Google Cloud, Oracle e GitHub</p>
+      <p class="headline">AWS Golden Jacket 🧥 · Certificações em AWS, Azure, Google Cloud, Oracle e GitHub</p>
+
+      <div class="stats" id="stats"></div>
+
+      <div class="actions">
+        <a class="btn primary" id="btn-linkedin" href="https://www.linkedin.com/in/guilherme-benfica" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn" id="btn-credly" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener noreferrer">Credly</a>
+        <a class="btn" href="https://builder.aws.com/community/@guilhermebenfica?tab=article" target="_blank" rel="noopener noreferrer">AWS Builder</a>
+      </div>
     </header>
 
-    <!-- EM BREVE: descomente quando os simulados estiverem publicados na Udemy e troque os links SEU-LINK-...
-    <section class="group">
-      <h2>📝 Simulados na Udemy</h2>
-      <a class="link aws" href="https://www.udemy.com/course/SEU-LINK-AWS-CLOUD-PRACTITIONER/" target="_blank" rel="noopener">
-        <span>AWS Cloud Practitioner (CLF-C02)</span>
-        <small>Simulado completo</small>
-      </a>
-      <a class="link aws" href="https://www.udemy.com/course/SEU-LINK-AWS-SAA/" target="_blank" rel="noopener">
-        <span>AWS Solutions Architect Associate (SAA-C03)</span>
-        <small>Simulado completo</small>
-      </a>
-      <a class="link azure" href="https://www.udemy.com/course/SEU-LINK-AZ-900/" target="_blank" rel="noopener">
-        <span>Microsoft Azure Fundamentals (AZ-900)</span>
-        <small>Simulado completo</small>
-      </a>
-      <a class="link azure" href="https://www.udemy.com/course/SEU-LINK-AZ-104/" target="_blank" rel="noopener">
-        <span>Azure Administrator (AZ-104)</span>
-        <small>Simulado completo</small>
-      </a>
-    </section>
-    -->
+    <nav class="nav" id="nav" aria-label="Plataformas"></nav>
 
-    <section class="group">
-      <h2>🏅 Certificações</h2>
-      <a class="link cert aws" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener">
-        <span>AWS <em>14x</em> · Golden Jacket 🧥</span>
-        <span class="chips">
-          <b>CLF-C01</b><b>AIF-C01</b><b>DVA-C02</b><b>DEA-C01</b><b>SAA-C03</b><b>SOA-C03</b><b>MLA-C01</b>
-          <b>SAP-C02</b><b>DOP-C01</b><b>ANS-C01</b><b>MLS-C01</b><b>AIP-C01</b><b>SCS-C03</b><b>AB1-C01</b>
-        </span>
-      </a>
-      <a class="link cert azure" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener">
-        <span>Microsoft Azure <em>13x</em></span>
-        <span class="chips">
-          <b>AZ-900</b><b>AI-900 / AI-901</b><b>DP-900</b><b>SC-900</b><b>MS-900</b><b>PL-900</b><b>AI-102 / AI-103</b>
-          <b>AZ-104</b><b>AZ-204 / AI-200</b><b>AZ-500 / SC-500</b><b>DP-100</b><b>PL-300</b><b>AZ-305</b>
-        </span>
-      </a>
-      <a class="link cert google" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener">
-        <span>Google Cloud <em>6x</em></span>
-        <span class="chips">
-          <b>CDL</b><b>GenAI Leader</b><b>ACE</b><b>ADP</b><b>PDE</b><b>PCDE</b>
-        </span>
-      </a>
-      <a class="link cert oracle" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener">
-        <span>Oracle Cloud <em>2x</em></span>
-        <span class="chips">
-          <b>OCI AI Foundations Associate</b><b>OCI Foundations Associate</b>
-        </span>
-      </a>
-      <a class="link cert github" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener">
-        <span>GitHub <em>2x</em></span>
-        <span class="chips">
-          <b>GH-300 Copilot</b><b>GH-600 Agentic AI Developer</b>
-        </span>
-      </a>
-      <a class="link neutral" href="https://www.credly.com/users/guilherme-benfica/badges#credly" target="_blank" rel="noopener">
-        <span>Ver todas as credenciais no Credly</span>
-        <small>Badges verificáveis</small>
-      </a>
-    </section>
+    <div id="providers"></div>
+    <noscript>
+      <p class="noscript">Ative o JavaScript para ver a lista completa ou acesse minhas credenciais no
+        <a href="https://www.credly.com/users/guilherme-benfica/badges#credly">Credly</a>.</p>
+    </noscript>
 
-    <section class="group">
-      <h2>✍️ Conteúdo</h2>
-      <a class="link aws" href="https://builder.aws.com/community/@guilhermebenfica?tab=article" target="_blank" rel="noopener">
-        <span>Artigos no AWS Builder</span>
-        <small>Conteúdo sobre AWS</small>
-      </a>
-      <!-- EM BREVE: descomente quando o Medium estiver no ar e troque SEU-USUARIO
-      <a class="link azure" href="https://medium.com/@SEU-USUARIO" target="_blank" rel="noopener">
-        <span>Artigos no Medium</span>
-        <small>Conteúdo sobre Azure</small>
-      </a>
-      -->
-    </section>
-
-    <section class="group">
-      <h2>🔗 Contato</h2>
-      <a class="link neutral" href="https://www.linkedin.com/in/guilherme-benfica" target="_blank" rel="noopener">
-        <span>LinkedIn</span>
-      </a>
+    <section class="provider content" id="conteudo">
+      <div class="provider-head"><h2>Conteúdo</h2></div>
+      <p class="tagline">Artigos técnicos sobre cloud</p>
+      <div class="grid">
+        <a class="cert has-udemy aws-accent" href="https://builder.aws.com/community/@guilhermebenfica?tab=article" target="_blank" rel="noopener noreferrer">
+          <div class="cert-top"><span class="cert-code">AWS Builder</span></div>
+          <div class="cert-name">Artigos sobre AWS</div>
+          <span class="cta">Ler artigos &rarr;</span>
+        </a>
+        <!-- EM BREVE: descomente quando o Medium estiver no ar e troque SEU-USUARIO
+        <a class="cert has-udemy azure-accent" href="https://medium.com/@SEU-USUARIO" target="_blank" rel="noopener noreferrer">
+          <div class="cert-top"><span class="cert-code">Medium</span></div>
+          <div class="cert-name">Artigos sobre Azure</div>
+          <span class="cta">Ler artigos &rarr;</span>
+        </a>
+        -->
+      </div>
     </section>
 
     <footer>© <span id="year"></span> Guilherme Benfica</footer>
   </main>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script src="certs.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
