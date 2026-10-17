@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "5"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "6"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
