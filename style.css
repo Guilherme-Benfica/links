@@ -173,7 +173,7 @@ h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.6vw
 .card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: var(--radius); }
 .tag { margin-top: 6px; font-size: 15px; font-weight: 600; color: color-mix(in srgb, var(--acc) 65%, #fff); }
 .desc { margin-top: 10px; color: var(--muted); font-size: 16px; }
-.facts { margin-top: 14px; font-size: 14px; color: var(--faint); }
+.facts { font-size: 14px; color: var(--faint); }
 .btn {
   margin-top: 20px; align-self: stretch; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 50px; border-radius: 14px; font-weight: 600; font-size: 16px;
@@ -182,7 +182,16 @@ h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.6vw
 }
 .btn svg { width: 18px; height: 18px; stroke-width: 2.4; }
 .card-body .btn { margin-top: auto; }
-.card-body .facts { margin-bottom: 20px; }
+.facts-row { margin: 16px 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.clang { position: relative; z-index: 4; display: inline-flex; padding: 3px; gap: 3px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); }
+.clang[hidden] { display: none; }
+.clang button {
+  min-width: 48px; min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--muted); font-family: var(--display); font-weight: 800; font-size: 14px; letter-spacing: 0.05em;
+  transition: background .2s, color .2s;
+}
+.clang button:hover { color: var(--ink); }
+.clang button[aria-pressed="true"] { background: linear-gradient(135deg, var(--gold-hi), var(--gold)); color: var(--ink-on-gold); }
 .card:hover, .card:focus-within { transform: translateY(-4px); border-color: color-mix(in srgb, var(--acc) 45%, transparent); box-shadow: 0 34px 70px -38px color-mix(in srgb, var(--acc) 60%, #000); }
 .card:hover .card-media img { transform: scale(1.035); }
 .card:hover .btn, .card:focus-within .btn { background: linear-gradient(135deg, var(--gold-hi), var(--gold)); color: var(--ink-on-gold); border-color: transparent; }
@@ -230,8 +239,17 @@ summary {
   padding: 18px 2px; font-weight: 600; font-size: 18px;
 }
 summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; flex: none; font-family: var(--display); font-size: 26px; line-height: 1; color: var(--gold); transition: transform .25s; }
-details[open] summary::after { transform: rotate(45deg); }
+summary::after {
+  content: ""; flex: none; width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid rgba(245, 196, 81, 0.45);
+  background: linear-gradient(var(--gold), var(--gold)) center / 12px 2px no-repeat, linear-gradient(var(--gold), var(--gold)) center / 2px 12px no-repeat;
+  transition: background-color .2s, border-color .2s;
+}
+summary:hover::after { border-color: var(--gold); }
+details[open] summary::after {
+  border-color: transparent;
+  background: linear-gradient(var(--ink-on-gold), var(--ink-on-gold)) center / 12px 2px no-repeat, linear-gradient(135deg, var(--gold-hi), var(--gold));
+}
 details p { padding: 0 2px 20px; color: var(--muted); max-width: 70ch; }
 
 /* ---------- rodapé ---------- */

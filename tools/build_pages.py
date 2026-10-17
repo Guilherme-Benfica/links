@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "8"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "9"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
@@ -75,8 +75,10 @@ TEXT = {
         "stats": [("4", "certificações"), ("20", "simulados completos"), ("1.300", "questões comentadas")],
         "courses_kicker": "Simulados na Udemy",
         "courses_h2": "Escolha sua certificação",
-        "courses_note": "Prefere estudar em inglês?",
-        "courses_note_link": "Veja a versão em inglês",
+        "courses_note": "Cada curso tem versão em português e em inglês. Escolha no botão PT / EN de cada card.",
+        "course_lang_label": "Idioma do simulado",
+        "btn_by_lang": {"pt": "Ver simulado na Udemy", "en": "Ver simulado em inglês na Udemy"},
+        "aria_by_lang": {"pt": "Abrir o simulado {code} {name} em português na Udemy", "en": "Abrir o simulado {code} {name} em inglês na Udemy"},
         "meta": "5 simulados · 65 questões cada",
         "button": "Ver simulado na Udemy",
         "aria_button": "Abrir o simulado {code} {name} na Udemy",
@@ -94,7 +96,7 @@ TEXT = {
         "footer_links": [("linkedin", "LinkedIn"), ("builder", "Artigos AWS"), ("credly", "Credly")],
         "faq_h2": "Perguntas frequentes",
         "faq": [
-            ("Os simulados são em português?", "Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. Use o seletor de idioma no topo da página."),
+            ("Os simulados são em português?", "Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher PT ou EN no card do curso."),
             ("As questões são as mesmas da prova real?", "Não. São questões originais, escritas a partir do guia oficial de cada exame para treinar o mesmo tipo de raciocínio que a prova cobra."),
             ("Preciso saber programar?", "Para o CLF-C02, o AIF-C01 e o AIB-C01, não. O MLA-C02 é de nível Associate e espera familiaridade com dados e machine learning na AWS."),
             ("Por quanto tempo tenho acesso?", "Na Udemy, o acesso ao curso é vitalício e inclui as atualizações dos simulados."),
@@ -120,8 +122,10 @@ TEXT = {
         "stats": [("4", "certifications"), ("20", "full practice exams"), ("1,300", "explained questions")],
         "courses_kicker": "Practice exams on Udemy",
         "courses_h2": "Choose your certification",
-        "courses_note": "Prefer to study in Portuguese?",
-        "courses_note_link": "See the Portuguese version",
+        "courses_note": "Every course has an English and a Portuguese version. Pick one with the PT / EN switch on each card.",
+        "course_lang_label": "Practice exam language",
+        "btn_by_lang": {"en": "View practice exams on Udemy", "pt": "View the Portuguese version on Udemy"},
+        "aria_by_lang": {"en": "Open the {code} {name} practice exams in English on Udemy", "pt": "Open the {code} {name} practice exams in Portuguese on Udemy"},
         "meta": "5 exams · 65 questions each",
         "button": "View practice exams on Udemy",
         "aria_button": "Open the {code} {name} practice exams on Udemy",
@@ -139,7 +143,7 @@ TEXT = {
         "footer_links": [("linkedin", "LinkedIn"), ("builder", "AWS articles"), ("credly", "Credly")],
         "faq_h2": "Frequently asked questions",
         "faq": [
-            ("Are the practice exams available in Portuguese?", "Yes. Each course has an English and a Portuguese version, with the same questions and explanations. Use the language switch at the top of the page."),
+            ("Are the practice exams available in Portuguese?", "Yes. Each course has an English and a Portuguese version, with the same questions and explanations. Just pick PT or EN on the course card."),
             ("Are these the real exam questions?", "No. They are original questions written from each official exam guide, to train the same kind of reasoning the exam tests."),
             ("Do I need to know how to code?", "Not for CLF-C02, AIF-C01, or AIB-C01. MLA-C02 is an Associate-level exam and expects familiarity with data and machine learning on AWS."),
             ("How long do I have access?", "On Udemy, course access is lifetime and includes updates to the practice exams."),
@@ -224,16 +228,27 @@ def page(lang):
     for i, c in enumerate(COURSES):
         aria = t["aria_button"].format(code=c["code"], name=c["name"])
         loading = 'fetchpriority="high"' if i < 2 else 'loading="lazy"'
+        alt = e(t["img_alt"].format(full=c["full"], code=c["code"]))
+        data = " ".join(
+            f'data-href-{l}="{e(course_link(c, l))}" data-img-{l}="{p}img/{c["id"]}-{l}.webp?v={v}" '
+            f'data-btn-{l}="{e(t["btn_by_lang"][l])}" data-aria-{l}="{e(t["aria_by_lang"][l].format(code=c["code"], name=c["name"]))}"'
+            for l in ("pt", "en"))
+        toggle = "".join(
+            f'<button type="button" data-set="{l}" lang="{"pt-BR" if l == "pt" else "en"}" aria-pressed="{"true" if l == lang else "false"}">{l.upper()}</button>'
+            for l in ("pt", "en"))
         cards.append(f'''
-      <li class="card c-{c["id"]}" style="--i:{i}">
-        <div class="card-media"><img src="{p}img/{c["id"]}-{lang}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{e(t["img_alt"].format(full=c["full"], code=c["code"]))}"></div>
+      <li class="card c-{c["id"]}" style="--i:{i}" {data}>
+        <div class="card-media"><img src="{p}img/{c["id"]}-{lang}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{alt}"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">{c["code"]}</span><span class="level">{c["level"][lang]}</span></div>
-          <h3><a href="{e(course_link(c, lang))}" target="_blank" rel="noopener" aria-label="{e(aria)}">{c["name"]}</a></h3>
+          <h3><a href="{e(course_link(c, lang))}" target="_blank" rel="noopener" aria-label="{e(t["aria_by_lang"][lang].format(code=c["code"], name=c["name"]))}">{c["name"]}</a></h3>
           <p class="tag">{e(c["tag"][lang])}</p>
           <p class="desc">{e(c["desc"][lang])}</p>
-          <p class="facts">{e(t["meta"])}</p>
-          <span class="btn" aria-hidden="true">{e(t["button"])} <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          <div class="facts-row">
+            <p class="facts">{e(t["meta"])}</p>
+            <div class="clang" role="group" aria-label="{e(t["course_lang_label"])}" hidden>{toggle}</div>
+          </div>
+          <span class="btn" aria-hidden="true"><span class="btn-label">{e(t["btn_by_lang"][lang])}</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
         </div>
       </li>''')
     benefits = "".join(f'''
@@ -308,7 +323,7 @@ def page(lang):
       <h2 id="courses-h">{e(t["courses_h2"])}</h2>
       <ul class="grid">{"".join(cards)}
       </ul>
-      <p class="switch-note">{e(t["courses_note"])} <a href="{other_href}" hreflang="{TEXT[other]["html_lang"]}">{e(t["courses_note_link"])} &rarr;</a></p>
+      <p class="switch-note">{e(t["courses_note"])}</p>
     </section>
 
     <section class="benefits" aria-labelledby="benefits-h">
@@ -341,6 +356,23 @@ def page(lang):
   </footer>
 
   <script>
+  (function () {{
+    document.querySelectorAll('.card').forEach(function (card) {{
+      var group = card.querySelector('.clang'), link = card.querySelector('h3 a'),
+          img = card.querySelector('.card-media img'), label = card.querySelector('.btn-label');
+      group.hidden = false;
+      group.querySelectorAll('button').forEach(function (btn) {{
+        btn.addEventListener('click', function () {{
+          var l = btn.getAttribute('data-set');
+          group.querySelectorAll('button').forEach(function (b) {{ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); }});
+          link.href = card.getAttribute('data-href-' + l);
+          link.setAttribute('aria-label', card.getAttribute('data-aria-' + l));
+          img.src = card.getAttribute('data-img-' + l);
+          label.textContent = card.getAttribute('data-btn-' + l);
+        }});
+      }});
+    }});
+  }})();
   (function () {{
     var hint = document.getElementById('hint'), key = 'links-hint-closed';
     var pageLang = hint.getAttribute('data-lang');

@@ -29,7 +29,7 @@
   <meta name="twitter:image" content="https://guilherme-benfica.github.io/links/img/og-pt.jpg">
   <link rel="preload" href="fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -152,7 +152,7 @@
      "name": "Os simulados são em português?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. Use o seletor de idioma no topo da página."
+      "text": "Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher PT ou EN no card do curso."
      }
     },
     {
@@ -201,65 +201,77 @@
 
   <main>
     <section class="hero">
-      <div class="hero-photo"><img src="img/foto.webp?v=8" width="240" height="240" alt="Foto de Guilherme Benfica"></div>
+      <div class="hero-photo"><img src="img/foto.webp?v=9" width="240" height="240" alt="Foto de Guilherme Benfica"></div>
       <p class="eyebrow">AWS Golden Jacket · todas as certificações AWS ativas</p>
       <h1>Simulados AWS com <em>todas as respostas</em> comentadas</h1>
       <p class="lede">Questões escritas a partir do guia oficial de cada exame, no formato e no tempo da prova. Em cada uma, você entende por que a certa está certa e por que as outras estão erradas.</p>
       <a class="cta" href="#simulados">Escolher meu simulado <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg></a>
       <ul class="stats"><li><strong>4</strong><span>certificações</span></li><li><strong>20</strong><span>simulados completos</span></li><li><strong>1.300</strong><span>questões comentadas</span></li></ul>
-      <ul class="badges" aria-hidden="true"><li><img src="img/badge-clf.webp?v=8" width="240" height="240" alt="" loading="lazy"></li><li><img src="img/badge-aif.webp?v=8" width="240" height="240" alt="" loading="lazy"></li><li><img src="img/badge-aib.webp?v=8" width="240" height="240" alt="" loading="lazy"></li><li><img src="img/badge-mla.webp?v=8" width="240" height="240" alt="" loading="lazy"></li></ul>
+      <ul class="badges" aria-hidden="true"><li><img src="img/badge-clf.webp?v=9" width="240" height="240" alt="" loading="lazy"></li><li><img src="img/badge-aif.webp?v=9" width="240" height="240" alt="" loading="lazy"></li><li><img src="img/badge-aib.webp?v=9" width="240" height="240" alt="" loading="lazy"></li><li><img src="img/badge-mla.webp?v=9" width="240" height="240" alt="" loading="lazy"></li></ul>
     </section>
 
     <section class="courses" id="simulados" aria-labelledby="courses-h">
       <p class="kicker">Simulados na Udemy</p>
       <h2 id="courses-h">Escolha sua certificação</h2>
       <ul class="grid">
-      <li class="card c-clf" style="--i:0">
-        <div class="card-media"><img src="img/clf-pt.webp?v=8" width="750" height="422" fetchpriority="high" decoding="async" alt="Capa do curso de simulados AWS Certified Cloud Practitioner (CLF-C02)"></div>
+      <li class="card c-clf" style="--i:0" data-href-pt="https://www.udemy.com/course/simulados-aws-cloud-practitioner-clf-c02-atualizado/?referralCode=EC24E96FDD556E35A0CD&amp;couponCode=AWSGRATIS2026" data-img-pt="img/clf-pt.webp?v=9" data-btn-pt="Ver simulado na Udemy" data-aria-pt="Abrir o simulado CLF-C02 Cloud Practitioner em português na Udemy" data-href-en="https://www.udemy.com/course/aws-cloud-practitioner-practice-exams-clf-c02-updated/?referralCode=2849BD6DE0A1EBC83FCE&amp;couponCode=AWSFREE2026" data-img-en="img/clf-en.webp?v=9" data-btn-en="Ver simulado em inglês na Udemy" data-aria-en="Abrir o simulado CLF-C02 Cloud Practitioner em inglês na Udemy">
+        <div class="card-media"><img src="img/clf-pt.webp?v=9" width="750" height="422" fetchpriority="high" decoding="async" alt="Capa do curso de simulados AWS Certified Cloud Practitioner (CLF-C02)"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">CLF-C02</span><span class="level">Foundational</span></div>
-          <h3><a href="https://www.udemy.com/course/simulados-aws-cloud-practitioner-clf-c02-atualizado/?referralCode=EC24E96FDD556E35A0CD&amp;couponCode=AWSGRATIS2026" target="_blank" rel="noopener" aria-label="Abrir o simulado CLF-C02 Cloud Practitioner na Udemy">Cloud Practitioner</a></h3>
+          <h3><a href="https://www.udemy.com/course/simulados-aws-cloud-practitioner-clf-c02-atualizado/?referralCode=EC24E96FDD556E35A0CD&amp;couponCode=AWSGRATIS2026" target="_blank" rel="noopener" aria-label="Abrir o simulado CLF-C02 Cloud Practitioner em português na Udemy">Cloud Practitioner</a></h3>
           <p class="tag">Ideal para começar</p>
           <p class="desc">Sua primeira certificação AWS: conceitos de nuvem, segurança, serviços principais, preços e suporte.</p>
-          <p class="facts">5 simulados · 65 questões cada</p>
-          <span class="btn" aria-hidden="true">Ver simulado na Udemy <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          <div class="facts-row">
+            <p class="facts">5 simulados · 65 questões cada</p>
+            <div class="clang" role="group" aria-label="Idioma do simulado" hidden><button type="button" data-set="pt" lang="pt-BR" aria-pressed="true">PT</button><button type="button" data-set="en" lang="en" aria-pressed="false">EN</button></div>
+          </div>
+          <span class="btn" aria-hidden="true"><span class="btn-label">Ver simulado na Udemy</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
         </div>
       </li>
-      <li class="card c-aif" style="--i:1">
-        <div class="card-media"><img src="img/aif-pt.webp?v=8" width="750" height="422" fetchpriority="high" decoding="async" alt="Capa do curso de simulados AWS Certified AI Practitioner (AIF-C01)"></div>
+      <li class="card c-aif" style="--i:1" data-href-pt="https://www.udemy.com/course/simulados-aws-ai-practitioner-aif-c01-atualizado/?referralCode=81BEE17F71273E8EC291&amp;couponCode=AWSFREE" data-img-pt="img/aif-pt.webp?v=9" data-btn-pt="Ver simulado na Udemy" data-aria-pt="Abrir o simulado AIF-C01 AI Practitioner em português na Udemy" data-href-en="https://www.udemy.com/course/aws-ai-practitioner-practice-exams-aif-c01/?referralCode=43233F7D54E7BBA1B47E&amp;couponCode=AWSFREE2026" data-img-en="img/aif-en.webp?v=9" data-btn-en="Ver simulado em inglês na Udemy" data-aria-en="Abrir o simulado AIF-C01 AI Practitioner em inglês na Udemy">
+        <div class="card-media"><img src="img/aif-pt.webp?v=9" width="750" height="422" fetchpriority="high" decoding="async" alt="Capa do curso de simulados AWS Certified AI Practitioner (AIF-C01)"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">AIF-C01</span><span class="level">Foundational</span></div>
-          <h3><a href="https://www.udemy.com/course/simulados-aws-ai-practitioner-aif-c01-atualizado/?referralCode=81BEE17F71273E8EC291&amp;couponCode=AWSFREE" target="_blank" rel="noopener" aria-label="Abrir o simulado AIF-C01 AI Practitioner na Udemy">AI Practitioner</a></h3>
+          <h3><a href="https://www.udemy.com/course/simulados-aws-ai-practitioner-aif-c01-atualizado/?referralCode=81BEE17F71273E8EC291&amp;couponCode=AWSFREE" target="_blank" rel="noopener" aria-label="Abrir o simulado AIF-C01 AI Practitioner em português na Udemy">AI Practitioner</a></h3>
           <p class="tag">Não exige programação</p>
           <p class="desc">Fundamentos de IA e ML, IA generativa, agentes, Amazon Bedrock e IA responsável.</p>
-          <p class="facts">5 simulados · 65 questões cada</p>
-          <span class="btn" aria-hidden="true">Ver simulado na Udemy <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          <div class="facts-row">
+            <p class="facts">5 simulados · 65 questões cada</p>
+            <div class="clang" role="group" aria-label="Idioma do simulado" hidden><button type="button" data-set="pt" lang="pt-BR" aria-pressed="true">PT</button><button type="button" data-set="en" lang="en" aria-pressed="false">EN</button></div>
+          </div>
+          <span class="btn" aria-hidden="true"><span class="btn-label">Ver simulado na Udemy</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
         </div>
       </li>
-      <li class="card c-aib" style="--i:2">
-        <div class="card-media"><img src="img/aib-pt.webp?v=8" width="750" height="422" loading="lazy" decoding="async" alt="Capa do curso de simulados AWS Certified AI Business Strategist (AIB-C01)"></div>
+      <li class="card c-aib" style="--i:2" data-href-pt="https://www.udemy.com/course/simulados-aws-ai-business-strategist-aib-c01/?referralCode=FE9480FFEC3ACC4BABCC&amp;couponCode=AWSFREE" data-img-pt="img/aib-pt.webp?v=9" data-btn-pt="Ver simulado na Udemy" data-aria-pt="Abrir o simulado AIB-C01 AI Business Strategist em português na Udemy" data-href-en="https://www.udemy.com/course/aws-ai-business-strategist-practice-exams-aib-c01/?referralCode=9FB0C7D2A84E522D44F3&amp;couponCode=AWSFREE" data-img-en="img/aib-en.webp?v=9" data-btn-en="Ver simulado em inglês na Udemy" data-aria-en="Abrir o simulado AIB-C01 AI Business Strategist em inglês na Udemy">
+        <div class="card-media"><img src="img/aib-pt.webp?v=9" width="750" height="422" loading="lazy" decoding="async" alt="Capa do curso de simulados AWS Certified AI Business Strategist (AIB-C01)"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">AIB-C01</span><span class="level">Business</span></div>
-          <h3><a href="https://www.udemy.com/course/simulados-aws-ai-business-strategist-aib-c01/?referralCode=FE9480FFEC3ACC4BABCC&amp;couponCode=AWSFREE" target="_blank" rel="noopener" aria-label="Abrir o simulado AIB-C01 AI Business Strategist na Udemy">AI Business Strategist</a></h3>
+          <h3><a href="https://www.udemy.com/course/simulados-aws-ai-business-strategist-aib-c01/?referralCode=FE9480FFEC3ACC4BABCC&amp;couponCode=AWSFREE" target="_blank" rel="noopener" aria-label="Abrir o simulado AIB-C01 AI Business Strategist em português na Udemy">AI Business Strategist</a></h3>
           <p class="tag">Para liderança e negócios</p>
           <p class="desc">Estratégia de IA, valor para o negócio, governança e liderança de iniciativas de IA.</p>
-          <p class="facts">5 simulados · 65 questões cada</p>
-          <span class="btn" aria-hidden="true">Ver simulado na Udemy <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          <div class="facts-row">
+            <p class="facts">5 simulados · 65 questões cada</p>
+            <div class="clang" role="group" aria-label="Idioma do simulado" hidden><button type="button" data-set="pt" lang="pt-BR" aria-pressed="true">PT</button><button type="button" data-set="en" lang="en" aria-pressed="false">EN</button></div>
+          </div>
+          <span class="btn" aria-hidden="true"><span class="btn-label">Ver simulado na Udemy</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
         </div>
       </li>
-      <li class="card c-mla" style="--i:3">
-        <div class="card-media"><img src="img/mla-pt.webp?v=8" width="750" height="422" loading="lazy" decoding="async" alt="Capa do curso de simulados AWS Certified Machine Learning Engineer - Associate (MLA-C02)"></div>
+      <li class="card c-mla" style="--i:3" data-href-pt="https://www.udemy.com/course/simulados-aws-machine-learning-engineer-mla-c02/?referralCode=425ACC388C26A359F7CD&amp;couponCode=AWSFREE" data-img-pt="img/mla-pt.webp?v=9" data-btn-pt="Ver simulado na Udemy" data-aria-pt="Abrir o simulado MLA-C02 Machine Learning Engineer em português na Udemy" data-href-en="https://www.udemy.com/course/aws-machine-learning-engineer-practice-exams-mla-c02/?referralCode=CFB4C2B61A3481D5FB71&amp;couponCode=AWSFREE" data-img-en="img/mla-en.webp?v=9" data-btn-en="Ver simulado em inglês na Udemy" data-aria-en="Abrir o simulado MLA-C02 Machine Learning Engineer em inglês na Udemy">
+        <div class="card-media"><img src="img/mla-pt.webp?v=9" width="750" height="422" loading="lazy" decoding="async" alt="Capa do curso de simulados AWS Certified Machine Learning Engineer - Associate (MLA-C02)"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">MLA-C02</span><span class="level">Associate</span></div>
-          <h3><a href="https://www.udemy.com/course/simulados-aws-machine-learning-engineer-mla-c02/?referralCode=425ACC388C26A359F7CD&amp;couponCode=AWSFREE" target="_blank" rel="noopener" aria-label="Abrir o simulado MLA-C02 Machine Learning Engineer na Udemy">Machine Learning Engineer</a></h3>
+          <h3><a href="https://www.udemy.com/course/simulados-aws-machine-learning-engineer-mla-c02/?referralCode=425ACC388C26A359F7CD&amp;couponCode=AWSFREE" target="_blank" rel="noopener" aria-label="Abrir o simulado MLA-C02 Machine Learning Engineer em português na Udemy">Machine Learning Engineer</a></h3>
           <p class="tag">Atualizado para o MLA-C02</p>
           <p class="desc">Preparação de dados, modelos, implantação, MLOps e IA generativa com SageMaker AI e Amazon Bedrock.</p>
-          <p class="facts">5 simulados · 65 questões cada</p>
-          <span class="btn" aria-hidden="true">Ver simulado na Udemy <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          <div class="facts-row">
+            <p class="facts">5 simulados · 65 questões cada</p>
+            <div class="clang" role="group" aria-label="Idioma do simulado" hidden><button type="button" data-set="pt" lang="pt-BR" aria-pressed="true">PT</button><button type="button" data-set="en" lang="en" aria-pressed="false">EN</button></div>
+          </div>
+          <span class="btn" aria-hidden="true"><span class="btn-label">Ver simulado na Udemy</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
         </div>
       </li>
       </ul>
-      <p class="switch-note">Prefere estudar em inglês? <a href="en/" hreflang="en">Veja a versão em inglês &rarr;</a></p>
+      <p class="switch-note">Cada curso tem versão em português e em inglês. Escolha no botão PT / EN de cada card.</p>
     </section>
 
     <section class="benefits" aria-labelledby="benefits-h">
@@ -273,7 +285,7 @@
     </section>
 
     <section class="author" aria-labelledby="author-h">
-      <img src="img/foto.webp?v=8" width="240" height="240" alt="" loading="lazy">
+      <img src="img/foto.webp?v=9" width="240" height="240" alt="" loading="lazy">
       <div>
         <p class="kicker">Quem escreveu</p>
         <h2 id="author-h">Feito por quem passou por todas</h2>
@@ -284,7 +296,7 @@
 
     <section class="faq" aria-labelledby="faq-h">
       <h2 id="faq-h">Perguntas frequentes</h2>
-        <details><summary>Os simulados são em português?</summary><p>Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. Use o seletor de idioma no topo da página.</p></details>
+        <details><summary>Os simulados são em português?</summary><p>Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher PT ou EN no card do curso.</p></details>
         <details><summary>As questões são as mesmas da prova real?</summary><p>Não. São questões originais, escritas a partir do guia oficial de cada exame para treinar o mesmo tipo de raciocínio que a prova cobra.</p></details>
         <details><summary>Preciso saber programar?</summary><p>Para o CLF-C02, o AIF-C01 e o AIB-C01, não. O MLA-C02 é de nível Associate e espera familiaridade com dados e machine learning na AWS.</p></details>
         <details><summary>Por quanto tempo tenho acesso?</summary><p>Na Udemy, o acesso ao curso é vitalício e inclui as atualizações dos simulados.</p></details>
@@ -300,6 +312,23 @@
   </footer>
 
   <script>
+  (function () {
+    document.querySelectorAll('.card').forEach(function (card) {
+      var group = card.querySelector('.clang'), link = card.querySelector('h3 a'),
+          img = card.querySelector('.card-media img'), label = card.querySelector('.btn-label');
+      group.hidden = false;
+      group.querySelectorAll('button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var l = btn.getAttribute('data-set');
+          group.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+          link.href = card.getAttribute('data-href-' + l);
+          link.setAttribute('aria-label', card.getAttribute('data-aria-' + l));
+          img.src = card.getAttribute('data-img-' + l);
+          label.textContent = card.getAttribute('data-btn-' + l);
+        });
+      });
+    });
+  })();
   (function () {
     var hint = document.getElementById('hint'), key = 'links-hint-closed';
     var pageLang = hint.getAttribute('data-lang');
