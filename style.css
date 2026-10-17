@@ -284,7 +284,10 @@ footer { padding-top: 48px; padding-bottom: 40px; color: var(--faint); font-size
   .cta { animation-delay: .32s; }
   .stats { animation-delay: .4s; }
   .badges { animation-delay: .48s; }
-  .card { animation-delay: calc(.2s + var(--i) * .08s); }
+  .card:nth-child(1) { animation-delay: .2s; }
+  .card:nth-child(2) { animation-delay: .28s; }
+  .card:nth-child(3) { animation-delay: .36s; }
+  .card:nth-child(4) { animation-delay: .44s; }
   @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) {

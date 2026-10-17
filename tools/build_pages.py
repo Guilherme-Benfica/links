@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "9"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "10"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
@@ -237,7 +237,7 @@ def page(lang):
             f'<button type="button" data-set="{l}" lang="{"pt-BR" if l == "pt" else "en"}" aria-pressed="{"true" if l == lang else "false"}">{l.upper()}</button>'
             for l in ("pt", "en"))
         cards.append(f'''
-      <li class="card c-{c["id"]}" style="--i:{i}" {data}>
+      <li class="card c-{c["id"]}" {data}>
         <div class="card-media"><img src="{p}img/{c["id"]}-{lang}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{alt}"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">{c["code"]}</span><span class="level">{c["level"][lang]}</span></div>
@@ -262,6 +262,8 @@ def page(lang):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>{e(t["title"])}</title>
   <meta name="description" content="{e(t["description"])}">
   <meta name="author" content="{PROFILE["name"]}">
@@ -355,38 +357,7 @@ def page(lang):
     <p>&copy; 2026 {PROFILE["name"]}</p>
   </footer>
 
-  <script>
-  (function () {{
-    document.querySelectorAll('.card').forEach(function (card) {{
-      var group = card.querySelector('.clang'), link = card.querySelector('h3 a'),
-          img = card.querySelector('.card-media img'), label = card.querySelector('.btn-label');
-      group.hidden = false;
-      group.querySelectorAll('button').forEach(function (btn) {{
-        btn.addEventListener('click', function () {{
-          var l = btn.getAttribute('data-set');
-          group.querySelectorAll('button').forEach(function (b) {{ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); }});
-          link.href = card.getAttribute('data-href-' + l);
-          link.setAttribute('aria-label', card.getAttribute('data-aria-' + l));
-          img.src = card.getAttribute('data-img-' + l);
-          label.textContent = card.getAttribute('data-btn-' + l);
-        }});
-      }});
-    }});
-  }})();
-  (function () {{
-    var hint = document.getElementById('hint'), key = 'links-hint-closed';
-    var pageLang = hint.getAttribute('data-lang');
-    var nav = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-    var wantsPt = /^pt/i.test(nav);
-    var closed = false;
-    try {{ closed = localStorage.getItem(key) === '1'; }} catch (e) {{}}
-    if (!closed && ((pageLang === 'pt' && nav && !wantsPt) || (pageLang === 'en' && wantsPt))) hint.hidden = false;
-    document.getElementById('hint-close').addEventListener('click', function () {{
-      hint.hidden = true;
-      try {{ localStorage.setItem(key, '1'); }} catch (e) {{}}
-    }});
-  }})();
-  </script>
+  <script src="{p}site.js?v={v}" defer></script>
 </body>
 </html>
 '''
