@@ -8,13 +8,13 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "7"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "8"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
-    "linkedin": "https://www.linkedin.com/in/guilherme-benfica",
+    "linkedin": "https://www.linkedin.com/in/guilherme-benfica/",
     "credly": "https://www.credly.com/users/guilherme-benfica/badges#credly",
-    "builder": "https://builder.aws.com/community/@guilhermebenfica?tab=article",
+    "builder": "https://builder.aws.com/community/@guilhermebenfica?tab=articles",
 }
 
 # Ordem = jornada sugerida (do primeiro passo até Associate)
@@ -90,7 +90,8 @@ TEXT = {
         "author_kicker": "Quem escreveu",
         "author_h2": "Feito por quem passou por todas",
         "author_p": "Sou Guilherme Benfica, AWS Golden Jacket: tenho todas as certificações AWS ativas. Cada uma exigiu meses de preparação, e foi assim que aprendi o que realmente decide a prova: interpretar o cenário, e não decorar respostas. Esses simulados reúnem essa experiência.",
-        "author_link": "Ver minhas certificações no Credly",
+        "author_links": [("linkedin", "Conectar no LinkedIn"), ("builder", "Ler meus artigos sobre AWS"), ("credly", "Ver minhas certificações no Credly")],
+        "footer_links": [("linkedin", "LinkedIn"), ("builder", "Artigos AWS"), ("credly", "Credly")],
         "faq_h2": "Perguntas frequentes",
         "faq": [
             ("Os simulados são em português?", "Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. Use o seletor de idioma no topo da página."),
@@ -134,7 +135,8 @@ TEXT = {
         "author_kicker": "Who wrote them",
         "author_h2": "Built by someone who passed them all",
         "author_p": "I'm Guilherme Benfica, an AWS Golden Jacket: I hold every active AWS certification. Each one took months of preparation, and that taught me what really decides the exam: reading the scenario, not memorizing answers. These practice exams bring that experience together.",
-        "author_link": "See my certifications on Credly",
+        "author_links": [("linkedin", "Connect on LinkedIn"), ("builder", "Read my AWS articles"), ("credly", "See my certifications on Credly")],
+        "footer_links": [("linkedin", "LinkedIn"), ("builder", "AWS articles"), ("credly", "Credly")],
         "faq_h2": "Frequently asked questions",
         "faq": [
             ("Are the practice exams available in Portuguese?", "Yes. Each course has an English and a Portuguese version, with the same questions and explanations. Use the language switch at the top of the page."),
@@ -158,6 +160,12 @@ ICONS = [
     '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/>',
     '<path d="M4 4h16v16H4z"/><path d="M4 9h16"/><path d="M9 9v11"/>',
 ]
+
+LINK_ICONS = {
+    "linkedin": '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',
+    "builder": '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7"/><path d="M9 17h5"/>',
+    "credly": '<circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/>',
+}
 
 e = html.escape
 
@@ -315,7 +323,7 @@ def page(lang):
         <p class="kicker">{e(t["author_kicker"])}</p>
         <h2 id="author-h">{e(t["author_h2"])}</h2>
         <p>{e(t["author_p"])}</p>
-        <a href="{PROFILE["credly"]}" target="_blank" rel="noopener">{e(t["author_link"])} &rarr;</a>
+        <ul class="author-links">{"".join(f'<li><a class="pill-link" href="{PROFILE[k]}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true">{LINK_ICONS[k]}</svg>{e(label)}</a></li>' for k, label in t["author_links"])}</ul>
       </div>
     </section>
 
@@ -326,8 +334,7 @@ def page(lang):
 
   <footer>
     <nav class="social" aria-label="Links">
-      <a href="{PROFILE["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="{PROFILE["credly"]}" target="_blank" rel="noopener">Credly</a>
+      {"".join(f'<a href="{PROFILE[k]}" target="_blank" rel="noopener">{e(label)}</a>' for k, label in t["footer_links"])}
     </nav>
     <p>{e(t["disclaimer"])}</p>
     <p>&copy; 2026 {PROFILE["name"]}</p>

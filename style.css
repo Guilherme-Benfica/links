@@ -212,7 +212,14 @@ h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.6vw
 .author img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; }
 @media (min-width: 720px) { .author img { width: 150px; height: 150px; } }
 .author p:not(.kicker) { margin-top: 12px; color: var(--muted); max-width: 66ch; }
-.author a { display: inline-block; margin-top: 14px; color: var(--gold-hi); font-weight: 600; text-underline-offset: 3px; }
+.author-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+.pill-link {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px;
+  border: 1px solid rgba(245, 196, 81, 0.4); background: rgba(245, 196, 81, 0.07); color: var(--gold-hi);
+  font-weight: 600; font-size: 15px; text-decoration: none; transition: background .2s, color .2s, border-color .2s;
+}
+.pill-link svg { width: 18px; height: 18px; stroke-width: 2.2; flex: none; }
+.pill-link:hover { background: linear-gradient(135deg, var(--gold-hi), var(--gold)); color: var(--ink-on-gold); border-color: transparent; }
 
 /* ---------- FAQ ---------- */
 .faq { padding: 56px 0 8px; max-width: 820px; }
