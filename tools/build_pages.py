@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "6"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "7"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
@@ -25,6 +25,7 @@ COURSES = [
         "tag": {"pt": "Ideal para começar", "en": "Best place to start"},
         "desc": {"pt": "Sua primeira certificação AWS: conceitos de nuvem, segurança, serviços principais, preços e suporte.",
                  "en": "Your first AWS certification: cloud concepts, security, core services, pricing, and support."},
+        "coupon": {"pt": "AWSGRATIS2026", "en": "AWSFREE2026"},  # cupom gratuito (deixe "" para tirar)
         "url": {"pt": "https://www.udemy.com/course/simulados-aws-cloud-practitioner-clf-c02-atualizado/?referralCode=EC24E96FDD556E35A0CD",
                 "en": "https://www.udemy.com/course/aws-cloud-practitioner-practice-exams-clf-c02-updated/?referralCode=2849BD6DE0A1EBC83FCE"},
     },
@@ -34,6 +35,7 @@ COURSES = [
         "tag": {"pt": "Não exige programação", "en": "No coding required"},
         "desc": {"pt": "Fundamentos de IA e ML, IA generativa, agentes, Amazon Bedrock e IA responsável.",
                  "en": "AI and ML fundamentals, generative AI, agents, Amazon Bedrock, and responsible AI."},
+        "coupon": {"pt": "AWSFREE", "en": "AWSFREE2026"},  # cupom gratuito (deixe "" para tirar)
         "url": {"pt": "https://www.udemy.com/course/simulados-aws-ai-practitioner-aif-c01-atualizado/?referralCode=81BEE17F71273E8EC291",
                 "en": "https://www.udemy.com/course/aws-ai-practitioner-practice-exams-aif-c01/?referralCode=43233F7D54E7BBA1B47E"},
     },
@@ -43,6 +45,7 @@ COURSES = [
         "tag": {"pt": "Para liderança e negócios", "en": "For business and leadership"},
         "desc": {"pt": "Estratégia de IA, valor para o negócio, governança e liderança de iniciativas de IA.",
                  "en": "AI strategy, business value, governance, and leading AI initiatives."},
+        "coupon": {"pt": "AWSFREE", "en": "AWSFREE"},  # cupom gratuito (deixe "" para tirar)
         "url": {"pt": "https://www.udemy.com/course/simulados-aws-ai-business-strategist-aib-c01/?referralCode=FE9480FFEC3ACC4BABCC",
                 "en": "https://www.udemy.com/course/aws-ai-business-strategist-practice-exams-aib-c01/?referralCode=9FB0C7D2A84E522D44F3"},
     },
@@ -52,6 +55,7 @@ COURSES = [
         "tag": {"pt": "Atualizado para o MLA-C02", "en": "Updated for MLA-C02"},
         "desc": {"pt": "Preparação de dados, modelos, implantação, MLOps e IA generativa com SageMaker AI e Amazon Bedrock.",
                  "en": "Data preparation, models, deployment, MLOps, and generative AI with SageMaker AI and Amazon Bedrock."},
+        "coupon": {"pt": "AWSFREE", "en": "AWSFREE"},  # cupom gratuito (deixe "" para tirar)
         "url": {"pt": "https://www.udemy.com/course/simulados-aws-machine-learning-engineer-mla-c02/?referralCode=425ACC388C26A359F7CD",
                 "en": "https://www.udemy.com/course/aws-machine-learning-engineer-practice-exams-mla-c02/?referralCode=CFB4C2B61A3481D5FB71"},
     },
@@ -158,6 +162,17 @@ ICONS = [
 e = html.escape
 
 
+def course_link(c, lang):
+    """Link da Udemy com o código de indicação e, se houver, o cupom gratuito."""
+    url = c["url"][lang]
+    code = c.get("coupon", {}).get(lang)
+    return f"{url}&couponCode={code}" if code else url
+
+
+def clean_url(c, lang):
+    return c["url"][lang].split("?")[0]
+
+
 def jsonld(lang, t):
     url = SITE + t["path"]
     person = {"@type": "Person", "@id": SITE + "#guilherme", "name": PROFILE["name"],
@@ -165,7 +180,7 @@ def jsonld(lang, t):
               "sameAs": [PROFILE["linkedin"], PROFILE["credly"], PROFILE["builder"]]}
     items = [{"@type": "ListItem", "position": i + 1, "item": {
         "@type": "Course", "name": f'{c["full"]} ({c["code"]})', "description": c["desc"][lang],
-        "url": c["url"][lang], "inLanguage": t["html_lang"], "image": SITE + f'img/{c["id"]}-{lang}.webp',
+        "url": clean_url(c, lang), "inLanguage": t["html_lang"], "image": SITE + f'img/{c["id"]}-{lang}.webp',
         "provider": {"@type": "Organization", "name": "Udemy", "sameAs": "https://www.udemy.com"},
         "creator": {"@id": SITE + "#guilherme"}}} for i, c in enumerate(COURSES)]
     graph = [
@@ -206,7 +221,7 @@ def page(lang):
         <div class="card-media"><img src="{p}img/{c["id"]}-{lang}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{e(t["img_alt"].format(full=c["full"], code=c["code"]))}"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">{c["code"]}</span><span class="level">{c["level"][lang]}</span></div>
-          <h3><a href="{e(c["url"][lang])}" target="_blank" rel="noopener" aria-label="{e(aria)}">{c["name"]}</a></h3>
+          <h3><a href="{e(course_link(c, lang))}" target="_blank" rel="noopener" aria-label="{e(aria)}">{c["name"]}</a></h3>
           <p class="tag">{e(c["tag"][lang])}</p>
           <p class="desc">{e(c["desc"][lang])}</p>
           <p class="facts">{e(t["meta"])}</p>
