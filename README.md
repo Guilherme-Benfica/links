@@ -1,21 +1,36 @@
-# Links: certificações e simulados
+# Simulados AWS: Guilherme Benfica
 
-Página estilo Linktree com minhas certificações cloud, links dos simulados na Udemy e conteúdo técnico. HTML, CSS e JavaScript puros, sem dependências nem build.
+Página dos meus simulados AWS na Udemy, em português e inglês. HTML e CSS estáticos, sem dependências nem frameworks.
+
+- Português: `https://guilherme-benfica.github.io/links/`
+- Inglês: `https://guilherme-benfica.github.io/links/en/`
 
 ## Como editar
 
-Quase tudo fica em **`certs.js`**:
+Textos, cursos e links ficam em **`tools/build_pages.py`**:
 
-- **Link da Udemy:** preencha `udemy: 'https://www.udemy.com/course/...'` na certificação. O card vira um botão "Simulado na Udemy" e sobe para o topo da plataforma.
-- **Link do badge no Credly:** preencha `badge: '...'` (usado quando não há link da Udemy).
-- **Selo "Novo":** adicione `novo: true` na certificação.
-- **Nova certificação:** copie uma linha `{ code: '...', name: '...', udemy: '', badge: '' }` dentro da plataforma.
+- **Cursos e links da Udemy:** lista `COURSES` (um link para cada idioma).
+- **Textos da página:** dicionário `TEXT` (`pt` e `en`).
 
-Em `index.html`, a seção **Conteúdo** tem o Medium comentado: descomente e troque `SEU-USUARIO` quando estiver no ar.
+Depois de editar, gere as páginas de novo:
 
-Foto de perfil (opcional): coloque `foto.jpg` na raiz. Sem ela aparecem as iniciais.
+```
+python3 tools/build_pages.py
+```
+
+Isso reescreve `index.html`, `en/index.html` e `sitemap.xml`. Se mudar `style.css` ou alguma imagem, aumente `VERSION` no script para o navegador não usar a versão antiga em cache.
+
+## Estrutura
+
+- `style.css`: visual das duas páginas
+- `img/`: capas dos cursos (WebP), selos, foto e imagens de compartilhamento (`og-pt.jpg`, `og-en.jpg`)
+- `fonts/`: Bricolage Grotesque e Instrument Sans (SIL Open Font License)
+- `favicon.svg`
+
+## SEO
+
+Cada idioma tem a própria URL, com `hreflang`, `canonical`, Open Graph e dados estruturados (Course, Person e FAQ). Para indexar mais rápido, envie `https://guilherme-benfica.github.io/links/sitemap.xml` no Google Search Console.
 
 ## Publicar no GitHub Pages
 
-1. Em **Settings > Pages**, escolha **Deploy from a branch**, branch `main`, pasta `/ (root)`.
-2. O link será `https://guilherme-benfica.github.io/links/`.
+Em **Settings > Pages**: **Deploy from a branch**, branch `main`, pasta `/ (root)`.
