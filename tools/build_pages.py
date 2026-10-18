@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "10"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "11"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
@@ -16,6 +16,9 @@ PROFILE = {
     "credly": "https://www.credly.com/users/guilherme-benfica/badges#credly",
     "builder": "https://builder.aws.com/community/@guilhermebenfica?tab=articles",
 }
+
+# Imagem de compartilhamento: a página principal usa a versão bilíngue (aparece no LinkedIn para todo mundo)
+OG_IMAGE = {"pt": "og-bilingue.jpg", "en": "og-en.jpg"}
 
 # Ordem = jornada sugerida (do primeiro passo até Associate)
 COURSES = [
@@ -197,7 +200,7 @@ def jsonld(lang, t):
         "creator": {"@id": SITE + "#guilherme"}}} for i, c in enumerate(COURSES)]
     graph = [
         {"@type": "WebPage", "@id": url, "url": url, "name": t["title"], "description": t["description"],
-         "inLanguage": t["html_lang"], "author": {"@id": SITE + "#guilherme"}, "primaryImageOfPage": SITE + f"img/og-{lang}.jpg"},
+         "inLanguage": t["html_lang"], "author": {"@id": SITE + "#guilherme"}, "primaryImageOfPage": SITE + f"img/{OG_IMAGE[lang]}"},
         person,
         {"@type": "ItemList", "name": t["list_name"], "itemListElement": items},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in t["faq"]]},
@@ -281,13 +284,13 @@ def page(lang):
   <meta property="og:title" content="{e(t["title"])}">
   <meta property="og:description" content="{e(t["description"])}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="{SITE}img/og-{lang}.jpg">
+  <meta property="og:image" content="{SITE}img/{OG_IMAGE[lang]}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{e(t["title"])}">
   <meta name="twitter:description" content="{e(t["description"])}">
-  <meta name="twitter:image" content="{SITE}img/og-{lang}.jpg">
+  <meta name="twitter:image" content="{SITE}img/{OG_IMAGE[lang]}">
   <link rel="preload" href="{p}fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{p}fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{p}style.css?v={v}">
