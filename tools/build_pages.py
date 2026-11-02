@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "12"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "13"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
@@ -295,7 +295,7 @@ def page(lang):
             f'<button type="button" data-set="{l}" lang="{"pt-BR" if l == "pt" else "en"}" aria-pressed="{"true" if l == lang else "false"}">{l.upper()}</button>'
             for l in ("pt", "en")) if both else ""
         cards.append(f'''
-      <li class="card c-{c["id"]}"{" " + data if data else ""}>
+      <li class="card c-{c["id"]} lv-{c["level"]["en"].lower()}"{" " + data if data else ""}>
         <div class="card-media"><img src="{p}img/{c["id"]}-{el}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{alt}"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">{c["code"]}</span><span class="level">{c["level"][lang]}</span></div>
