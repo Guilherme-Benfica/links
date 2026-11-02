@@ -4,6 +4,7 @@
   document.querySelectorAll('.card').forEach(function (card) {
     var group = card.querySelector('.clang'), link = card.querySelector('h3 a'),
         img = card.querySelector('.card-media img'), label = card.querySelector('.btn-label');
+    if (!group) return;  // curso que existe em um idioma só: não tem botão PT / EN
     group.hidden = false;
     group.querySelectorAll('button').forEach(function (btn) {
       btn.addEventListener('click', function () {

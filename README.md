@@ -9,7 +9,8 @@ Página dos meus simulados AWS na Udemy, em português e inglês. HTML e CSS est
 
 Textos, cursos e links ficam em **`tools/build_pages.py`**:
 
-- **Cursos e links da Udemy:** lista `COURSES` (um link para cada idioma).
+- **Cursos e links da Udemy:** lista `COURSES` (um link para cada idioma). Curso que existe em um idioma só: deixe a chave do outro idioma fora de `url` e `coupon`. O card some com o botão PT / EN e mostra "em inglês". Para lançar a versão em português, é só acrescentar `pt`.
+- **Cupom:** `coupon` de cada idioma. Os números do topo (certificações, simulados, questões) são calculados sozinhos a partir da lista.
 - **Textos da página:** dicionário `TEXT` (`pt` e `en`).
 
 Depois de editar, gere as páginas de novo:
@@ -24,7 +25,7 @@ Isso reescreve `index.html`, `en/index.html` e `sitemap.xml`. Se mudar `style.cs
 
 - `style.css`: visual das duas páginas
 - `site.js`: botões PT / EN de cada curso e aviso de idioma
-- `img/`: capas dos cursos (WebP), selos, foto e imagens de compartilhamento (`og-pt.jpg`, `og-en.jpg`)
+- `img/`: capas dos cursos (`{id}-pt.webp` e `{id}-en.webp`, 750x422), selos (`badge-{id}.webp`, 240x240), foto e imagens de compartilhamento (`og-bilingue.jpg`, `og-en.jpg`)
 - `fonts/`: Bricolage Grotesque e Instrument Sans (SIL Open Font License)
 - `favicon.svg`
 

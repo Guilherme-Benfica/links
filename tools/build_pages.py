@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://guilherme-benfica.github.io/links/"
-VERSION = "11"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
+VERSION = "12"  # aumente quando mudar style.css ou as imagens (evita cache antigo)
 
 PROFILE = {
     "name": "Guilherme Benfica",
@@ -20,10 +20,13 @@ PROFILE = {
 # Imagem de compartilhamento: a página principal usa a versão bilíngue (aparece no LinkedIn para todo mundo)
 OG_IMAGE = {"pt": "og-bilingue.jpg", "en": "og-en.jpg"}
 
-# Ordem = jornada sugerida (do primeiro passo até Associate)
+# Ordem = jornada sugerida (do primeiro passo até Professional)
+# "q" = questões por simulado (são 5 simulados por curso).
+# Curso que existe só em um idioma: deixe a chave do outro idioma fora de "url" (e de "coupon").
+# Quando publicar a versão em português, é só acrescentar "pt" em "url" e "coupon".
 COURSES = [
     {
-        "id": "clf", "code": "CLF-C02", "name": "Cloud Practitioner", "full": "AWS Certified Cloud Practitioner",
+        "id": "clf", "q": 65, "code": "CLF-C02", "name": "Cloud Practitioner", "full": "AWS Certified Cloud Practitioner",
         "level": {"pt": "Foundational", "en": "Foundational"},
         "tag": {"pt": "Ideal para começar", "en": "Best place to start"},
         "desc": {"pt": "Sua primeira certificação AWS: conceitos de nuvem, segurança, serviços principais, preços e suporte.",
@@ -33,7 +36,7 @@ COURSES = [
                 "en": "https://www.udemy.com/course/aws-cloud-practitioner-practice-exams-clf-c02-updated/?referralCode=2849BD6DE0A1EBC83FCE"},
     },
     {
-        "id": "aif", "code": "AIF-C01", "name": "AI Practitioner", "full": "AWS Certified AI Practitioner",
+        "id": "aif", "q": 65, "code": "AIF-C01", "name": "AI Practitioner", "full": "AWS Certified AI Practitioner",
         "level": {"pt": "Foundational", "en": "Foundational"},
         "tag": {"pt": "Não exige programação", "en": "No coding required"},
         "desc": {"pt": "Fundamentos de IA e ML, IA generativa, agentes, Amazon Bedrock e IA responsável.",
@@ -43,7 +46,7 @@ COURSES = [
                 "en": "https://www.udemy.com/course/aws-ai-practitioner-practice-exams-aif-c01/?referralCode=43233F7D54E7BBA1B47E"},
     },
     {
-        "id": "aib", "code": "AIB-C01", "name": "AI Business Strategist", "full": "AWS Certified AI Business Strategist",
+        "id": "aib", "q": 65, "code": "AIB-C01", "name": "AI Business Strategist", "full": "AWS Certified AI Business Strategist",
         "level": {"pt": "Business", "en": "Business"},
         "tag": {"pt": "Para liderança e negócios", "en": "For business and leadership"},
         "desc": {"pt": "Estratégia de IA, valor para o negócio, governança e liderança de iniciativas de IA.",
@@ -53,7 +56,35 @@ COURSES = [
                 "en": "https://www.udemy.com/course/aws-ai-business-strategist-practice-exams-aib-c01/?referralCode=9FB0C7D2A84E522D44F3"},
     },
     {
-        "id": "mla", "code": "MLA-C02", "name": "Machine Learning Engineer", "full": "AWS Certified Machine Learning Engineer - Associate",
+        "id": "saa", "q": 65, "code": "SAA-C03", "name": "Solutions Architect", "full": "AWS Certified Solutions Architect - Associate",
+        "level": {"pt": "Associate", "en": "Associate"},
+        "tag": {"pt": "Atualizado para o SAA-C03", "en": "Updated for SAA-C03"},
+        "desc": {"pt": "Arquiteturas seguras, resilientes, de alto desempenho e com custo otimizado na AWS.",
+                 "en": "Secure, resilient, high-performing, and cost-optimized architectures on AWS."},
+        "coupon": {"pt": "AWSNOVFREE", "en": "AWSNOVFREE"},  # cupom gratuito (deixe "" para tirar)
+        "url": {"pt": "https://www.udemy.com/course/simulados-aws-solutions-architect-associate-saa-c03/",
+                "en": "https://www.udemy.com/course/aws-solutions-architect-associate-practice-exams-saa-c03/"},
+    },
+    {
+        "id": "soa", "q": 65, "code": "SOA-C03", "name": "CloudOps Engineer", "full": "AWS Certified CloudOps Engineer - Associate",
+        "level": {"pt": "Associate", "en": "Associate"},
+        "tag": {"pt": "Operações na nuvem", "en": "Cloud operations"},
+        "desc": {"pt": "Monitoramento, confiabilidade, implantação, automação, segurança e redes na operação de workloads na AWS.",
+                 "en": "Monitoring, reliability, deployment, automation, security, and networking for operating AWS workloads."},
+        "coupon": {"en": "AWSNOVFREE"},  # só em inglês por enquanto
+        "url": {"en": "https://www.udemy.com/course/aws-cloudops-engineer-associate-practice-exams-soa-c03/"},
+    },
+    {
+        "id": "dea", "q": 65, "code": "DEA-C01", "name": "Data Engineer", "full": "AWS Certified Data Engineer - Associate",
+        "level": {"pt": "Associate", "en": "Associate"},
+        "tag": {"pt": "Engenharia de dados", "en": "Data engineering"},
+        "desc": {"pt": "Ingestão e transformação de dados, armazenamento, operações, segurança e governança de dados.",
+                 "en": "Data ingestion and transformation, storage, operations, security, and data governance."},
+        "coupon": {"en": "AWSNOVFREE"},  # só em inglês por enquanto
+        "url": {"en": "https://www.udemy.com/course/aws-data-engineer-associate-exams-dea-c01/"},
+    },
+    {
+        "id": "mla", "q": 65, "code": "MLA-C02", "name": "Machine Learning Engineer", "full": "AWS Certified Machine Learning Engineer - Associate",
         "level": {"pt": "Associate", "en": "Associate"},
         "tag": {"pt": "Atualizado para o MLA-C02", "en": "Updated for MLA-C02"},
         "desc": {"pt": "Preparação de dados, modelos, implantação, MLOps e IA generativa com SageMaker AI e Amazon Bedrock.",
@@ -62,27 +93,36 @@ COURSES = [
         "url": {"pt": "https://www.udemy.com/course/simulados-aws-machine-learning-engineer-mla-c02/?referralCode=425ACC388C26A359F7CD",
                 "en": "https://www.udemy.com/course/aws-machine-learning-engineer-practice-exams-mla-c02/?referralCode=CFB4C2B61A3481D5FB71"},
     },
+    {
+        "id": "aip", "q": 75, "code": "AIP-C01", "name": "Generative AI Developer", "full": "AWS Certified Generative AI Developer - Professional",
+        "level": {"pt": "Professional", "en": "Professional"},
+        "tag": {"pt": "IA generativa para desenvolvedores", "en": "Generative AI for developers"},
+        "desc": {"pt": "Soluções de IA generativa em produção: modelos de fundação, RAG, agentes, segurança e governança.",
+                 "en": "Generative AI solutions in production: foundation models, RAG, agents, security, and governance."},
+        "coupon": {"en": "AWSNOVFREE"},  # só em inglês por enquanto
+        "url": {"en": "https://www.udemy.com/course/aws-generative-ai-developer-pro-aip-c01-practice-exams/"},
+    },
 ]
 
 TEXT = {
     "pt": {
         "html_lang": "pt-BR", "og_locale": "pt_BR", "path": "", "prefix": "",
-        "title": "Simulados AWS em Português | CLF-C02, AIF-C01, AIB-C01 e MLA-C02",
-        "description": "Simulados AWS com todas as respostas comentadas para CLF-C02, AIF-C01, AIB-C01 e MLA-C02. 5 provas de 65 questões por curso, feitas por um AWS Golden Jacket.",
+        "title": "Simulados AWS | SAA-C03, SOA-C03, DEA-C01, AIP-C01 e mais",
+        "description": "Simulados AWS com todas as respostas comentadas para CLF-C02, AIF-C01, AIB-C01, SAA-C03, SOA-C03, DEA-C01, MLA-C02 e AIP-C01. 5 provas por curso, feitas por um AWS Golden Jacket.",
         "skip": "Pular para os simulados",
         "lang_label": "Idioma", "lang_pt": "Português", "lang_en": "English",
         "eyebrow": "AWS Golden Jacket · todas as certificações AWS ativas",
         "h1": "Simulados AWS com <em>todas as respostas</em> comentadas",
         "lede": "Questões escritas a partir do guia oficial de cada exame, no formato e no tempo da prova. Em cada uma, você entende por que a certa está certa e por que as outras estão erradas.",
         "cta": "Escolher meu simulado",
-        "stats": [("4", "certificações"), ("20", "simulados completos"), ("1.300", "questões comentadas")],
+        "stat_labels": ("certificações", "simulados completos", "questões comentadas"), "thousands": ".",
         "courses_kicker": "Simulados na Udemy",
         "courses_h2": "Escolha sua certificação",
-        "courses_note": "Cada curso tem versão em português e em inglês. Escolha no botão PT / EN de cada card.",
+        "courses_note": "Os cursos com botão PT / EN têm versão nos dois idiomas. Os demais estão em inglês.",
         "course_lang_label": "Idioma do simulado",
         "btn_by_lang": {"pt": "Ver simulado na Udemy", "en": "Ver simulado em inglês na Udemy"},
         "aria_by_lang": {"pt": "Abrir o simulado {code} {name} em português na Udemy", "en": "Abrir o simulado {code} {name} em inglês na Udemy"},
-        "meta": "5 simulados · 65 questões cada",
+        "meta": "5 simulados · {q} questões cada", "meta_only": {"en": " · em inglês"},
         "button": "Ver simulado na Udemy",
         "aria_button": "Abrir o simulado {code} {name} na Udemy",
         "benefits_h2": "O que você encontra em cada curso",
@@ -99,9 +139,9 @@ TEXT = {
         "footer_links": [("linkedin", "LinkedIn"), ("builder", "Artigos AWS"), ("credly", "Credly")],
         "faq_h2": "Perguntas frequentes",
         "faq": [
-            ("Os simulados são em português?", "Sim. Cada curso tem uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher PT ou EN no card do curso."),
+            ("Os simulados são em português?", "Os cursos com botão PT / EN têm uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher no card do curso. Os demais estão disponíveis em inglês."),
             ("As questões são as mesmas da prova real?", "Não. São questões originais, escritas a partir do guia oficial de cada exame para treinar o mesmo tipo de raciocínio que a prova cobra."),
-            ("Preciso saber programar?", "Para o CLF-C02, o AIF-C01 e o AIB-C01, não. O MLA-C02 é de nível Associate e espera familiaridade com dados e machine learning na AWS."),
+            ("Preciso saber programar?", "Para o CLF-C02, o AIF-C01 e o AIB-C01, não. Os demais são de nível Associate ou Professional e esperam experiência prática com a AWS. O MLA-C02 e o AIP-C01 também pedem familiaridade com machine learning e desenvolvimento de IA."),
             ("Por quanto tempo tenho acesso?", "Na Udemy, o acesso ao curso é vitalício e inclui as atualizações dos simulados."),
         ],
         "hint": "This page is also available in English.",
@@ -114,22 +154,22 @@ TEXT = {
     },
     "en": {
         "html_lang": "en", "og_locale": "en_US", "path": "en/", "prefix": "../",
-        "title": "AWS Practice Exams | CLF-C02, AIF-C01, AIB-C01 and MLA-C02",
-        "description": "AWS practice exams with every answer explained for CLF-C02, AIF-C01, AIB-C01, and MLA-C02. 5 full 65-question exams per course, by an AWS Golden Jacket.",
+        "title": "AWS Practice Exams | SAA-C03, SOA-C03, DEA-C01, AIP-C01 and more",
+        "description": "AWS practice exams with every answer explained for CLF-C02, AIF-C01, AIB-C01, SAA-C03, SOA-C03, DEA-C01, MLA-C02, and AIP-C01. 5 full exams per course, by an AWS Golden Jacket.",
         "skip": "Skip to the practice exams",
         "lang_label": "Language", "lang_pt": "Português", "lang_en": "English",
         "eyebrow": "AWS Golden Jacket · every active AWS certification",
         "h1": "AWS practice exams with <em>every answer</em> explained",
         "lede": "Questions written from each official exam guide, in the format and at the pace of the real exam. For each one, you learn why the right answer is right and why the others are wrong.",
         "cta": "Choose my practice exam",
-        "stats": [("4", "certifications"), ("20", "full practice exams"), ("1,300", "explained questions")],
+        "stat_labels": ("certifications", "full practice exams", "explained questions"), "thousands": ",",
         "courses_kicker": "Practice exams on Udemy",
         "courses_h2": "Choose your certification",
-        "courses_note": "Every course has an English and a Portuguese version. Pick one with the PT / EN switch on each card.",
+        "courses_note": "Courses with a PT / EN switch come in both languages. The others are in English.",
         "course_lang_label": "Practice exam language",
         "btn_by_lang": {"en": "View practice exams on Udemy", "pt": "View the Portuguese version on Udemy"},
         "aria_by_lang": {"en": "Open the {code} {name} practice exams in English on Udemy", "pt": "Open the {code} {name} practice exams in Portuguese on Udemy"},
-        "meta": "5 exams · 65 questions each",
+        "meta": "5 exams · {q} questions each", "meta_only": {"pt": " · in Portuguese"},
         "button": "View practice exams on Udemy",
         "aria_button": "Open the {code} {name} practice exams on Udemy",
         "benefits_h2": "What you get in every course",
@@ -146,9 +186,9 @@ TEXT = {
         "footer_links": [("linkedin", "LinkedIn"), ("builder", "AWS articles"), ("credly", "Credly")],
         "faq_h2": "Frequently asked questions",
         "faq": [
-            ("Are the practice exams available in Portuguese?", "Yes. Each course has an English and a Portuguese version, with the same questions and explanations. Just pick PT or EN on the course card."),
+            ("Are the practice exams available in Portuguese?", "Courses with a PT / EN switch have an English and a Portuguese version, with the same questions and explanations. Just pick one on the course card. The others are available in English."),
             ("Are these the real exam questions?", "No. They are original questions written from each official exam guide, to train the same kind of reasoning the exam tests."),
-            ("Do I need to know how to code?", "Not for CLF-C02, AIF-C01, or AIB-C01. MLA-C02 is an Associate-level exam and expects familiarity with data and machine learning on AWS."),
+            ("Do I need to know how to code?", "Not for CLF-C02, AIF-C01, or AIB-C01. The others are Associate or Professional level and expect hands-on AWS experience. MLA-C02 and AIP-C01 also expect familiarity with machine learning and AI development."),
             ("How long do I have access?", "On Udemy, course access is lifetime and includes updates to the practice exams."),
         ],
         "hint": "Esta página também está disponível em português.",
@@ -181,7 +221,18 @@ def course_link(c, lang):
     """Link da Udemy com o código de indicação e, se houver, o cupom gratuito."""
     url = c["url"][lang]
     code = c.get("coupon", {}).get(lang)
-    return f"{url}&couponCode={code}" if code else url
+    if not code:
+        return url
+    return f"{url}{'&' if '?' in url else '?'}couponCode={code}"
+
+
+def eff_lang(c, lang):
+    """Idioma que o card mostra: o da página, ou o único que o curso tem."""
+    return lang if lang in c["url"] else next(iter(c["url"]))
+
+
+def fmt_num(n, sep):
+    return f"{n:,}".replace(",", sep)
 
 
 def clean_url(c, lang):
@@ -195,7 +246,7 @@ def jsonld(lang, t):
               "sameAs": [PROFILE["linkedin"], PROFILE["credly"], PROFILE["builder"]]}
     items = [{"@type": "ListItem", "position": i + 1, "item": {
         "@type": "Course", "name": f'{c["full"]} ({c["code"]})', "description": c["desc"][lang],
-        "url": clean_url(c, lang), "inLanguage": t["html_lang"], "image": SITE + f'img/{c["id"]}-{lang}.webp',
+        "url": clean_url(c, eff_lang(c, lang)), "inLanguage": TEXT[eff_lang(c, lang)]["html_lang"], "image": SITE + f'img/{c["id"]}-{eff_lang(c, lang)}.webp',
         "provider": {"@type": "Organization", "name": "Udemy", "sameAs": "https://www.udemy.com"},
         "creator": {"@id": SITE + "#guilherme"}}} for i, c in enumerate(COURSES)]
     graph = [
@@ -226,32 +277,36 @@ def page(lang):
         cur = ' aria-current="page"' if here else ""
         return f'<a href="{href}" hreflang="{hl}" lang="{hl}"{cur}><span class="lang-code">{code.upper()}</span><span class="lang-name">{label}</span></a>'
 
-    stats = "".join(f'<li><strong>{e(n)}</strong><span>{e(l)}</span></li>' for n, l in t["stats"])
+    n_courses = len(COURSES)
+    stat_values = (str(n_courses), str(5 * n_courses), fmt_num(sum(5 * c["q"] for c in COURSES), t["thousands"]))
+    stats = "".join(f'<li><strong>{e(n)}</strong><span>{e(l)}</span></li>' for n, l in zip(stat_values, t["stat_labels"]))
     cards = []
     for i, c in enumerate(COURSES):
-        aria = t["aria_button"].format(code=c["code"], name=c["name"])
+        el = eff_lang(c, lang)            # idioma do card nesta página
+        both = len(c["url"]) == 2          # só mostra o botão PT / EN se o curso existe nos dois
         loading = 'fetchpriority="high"' if i < 2 else 'loading="lazy"'
         alt = e(t["img_alt"].format(full=c["full"], code=c["code"]))
         data = " ".join(
             f'data-href-{l}="{e(course_link(c, l))}" data-img-{l}="{p}img/{c["id"]}-{l}.webp?v={v}" '
             f'data-btn-{l}="{e(t["btn_by_lang"][l])}" data-aria-{l}="{e(t["aria_by_lang"][l].format(code=c["code"], name=c["name"]))}"'
-            for l in ("pt", "en"))
+            for l in ("pt", "en")) if both else ""
+        meta = t["meta"].format(q=c["q"]) + ("" if both else t["meta_only"].get(el, ""))
         toggle = "".join(
             f'<button type="button" data-set="{l}" lang="{"pt-BR" if l == "pt" else "en"}" aria-pressed="{"true" if l == lang else "false"}">{l.upper()}</button>'
-            for l in ("pt", "en"))
+            for l in ("pt", "en")) if both else ""
         cards.append(f'''
-      <li class="card c-{c["id"]}" {data}>
-        <div class="card-media"><img src="{p}img/{c["id"]}-{lang}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{alt}"></div>
+      <li class="card c-{c["id"]}"{" " + data if data else ""}>
+        <div class="card-media"><img src="{p}img/{c["id"]}-{el}.webp?v={v}" width="750" height="422" {loading} decoding="async" alt="{alt}"></div>
         <div class="card-body">
           <div class="card-meta"><span class="code">{c["code"]}</span><span class="level">{c["level"][lang]}</span></div>
-          <h3><a href="{e(course_link(c, lang))}" target="_blank" rel="noopener" aria-label="{e(t["aria_by_lang"][lang].format(code=c["code"], name=c["name"]))}">{c["name"]}</a></h3>
+          <h3><a href="{e(course_link(c, el))}" target="_blank" rel="noopener" aria-label="{e(t["aria_by_lang"][el].format(code=c["code"], name=c["name"]))}">{c["name"]}</a></h3>
           <p class="tag">{e(c["tag"][lang])}</p>
           <p class="desc">{e(c["desc"][lang])}</p>
           <div class="facts-row">
-            <p class="facts">{e(t["meta"])}</p>
-            <div class="clang" role="group" aria-label="{e(t["course_lang_label"])}" hidden>{toggle}</div>
+            <p class="facts">{e(meta)}</p>
+            {f'<div class="clang" role="group" aria-label="{e(t["course_lang_label"])}" hidden>{toggle}</div>' if both else ""}
           </div>
-          <span class="btn" aria-hidden="true"><span class="btn-label">{e(t["btn_by_lang"][lang])}</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          <span class="btn" aria-hidden="true"><span class="btn-label">{e(t["btn_by_lang"][el])}</span> <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
         </div>
       </li>''')
     benefits = "".join(f'''
