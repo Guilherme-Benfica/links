@@ -18,7 +18,8 @@ PROFILE = {
 }
 
 # Imagem de compartilhamento: a página principal usa a versão bilíngue (aparece no LinkedIn para todo mundo)
-OG_IMAGE = {"pt": "og-bilingue.jpg", "en": "og-en.jpg"}
+# O nome muda (v2, v3...) quando a imagem muda, porque LinkedIn e WhatsApp guardam a imagem antiga em cache
+OG_IMAGE = {"pt": "og-bilingue-v2.jpg", "en": "og-en-v2.jpg"}
 
 # Ordem = jornada sugerida (do primeiro passo até Professional)
 # "q" = questões por simulado (são 5 simulados por curso).
@@ -138,10 +139,15 @@ TEXT = {
         "author_links": [("linkedin", "Conectar no LinkedIn"), ("builder", "Ler meus artigos sobre AWS"), ("credly", "Ver minhas certificações no Credly")],
         "footer_links": [("linkedin", "LinkedIn"), ("builder", "Artigos AWS"), ("credly", "Credly")],
         "faq_h2": "Perguntas frequentes",
+        "lang_all": "Sim. Todos os cursos têm uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher PT ou EN no card.",
+        "lang_some": "Depende do curso. {both} têm uma versão em português e outra em inglês, com as mesmas questões e explicações: é só escolher PT ou EN no card. {only} estão disponíveis em inglês.",
+        "and": " e ",
         "faq": [
-            ("Os simulados são em português?", "Os cursos com botão PT / EN têm uma versão em português e outra em inglês, com as mesmas questões e explicações. É só escolher no card do curso. Os demais estão disponíveis em inglês."),
+            ("Os simulados são em português?", "{lang_answer}"),
+            ("Qual simulado devo fazer primeiro?", "Comece pelo seu objetivo: nuvem em geral (CLF-C02), IA sem programação (AIF-C01 e AIB-C01), arquitetura (SAA-C03), operações (SOA-C03), dados (DEA-C01), machine learning (MLA-C02) ou IA generativa para desenvolvedores (AIP-C01). Quem está começando na AWS pode partir do CLF-C02."),
             ("As questões são as mesmas da prova real?", "Não. São questões originais, escritas a partir do guia oficial de cada exame para treinar o mesmo tipo de raciocínio que a prova cobra."),
-            ("Preciso saber programar?", "Para o CLF-C02, o AIF-C01 e o AIB-C01, não. Os demais são de nível Associate ou Professional e esperam experiência prática com a AWS. O MLA-C02 e o AIP-C01 também pedem familiaridade com machine learning e desenvolvimento de IA."),
+            ("Preciso saber programar?", "Para o CLF-C02, o AIF-C01 e o AIB-C01, não. Os demais são de nível Associate ou Professional e esperam experiência prática com a AWS. O DEA-C01 pede familiaridade com pipelines de dados, e o MLA-C02 e o AIP-C01, com machine learning e desenvolvimento de IA."),
+            ("O link do card já aplica o cupom?", "Sim. O link de cada card já leva o cupom promocional. Cupons da Udemy têm prazo e limite de usos: se o preço aparecer cheio, o cupom já expirou."),
             ("Por quanto tempo tenho acesso?", "Na Udemy, o acesso ao curso é vitalício e inclui as atualizações dos simulados."),
         ],
         "hint": "This page is also available in English.",
@@ -185,10 +191,15 @@ TEXT = {
         "author_links": [("linkedin", "Connect on LinkedIn"), ("builder", "Read my AWS articles"), ("credly", "See my certifications on Credly")],
         "footer_links": [("linkedin", "LinkedIn"), ("builder", "AWS articles"), ("credly", "Credly")],
         "faq_h2": "Frequently asked questions",
+        "lang_all": "Yes. Every course has an English and a Portuguese version, with the same questions and explanations. Just pick PT or EN on the card.",
+        "lang_some": "It depends on the course. {both} come in English and Portuguese, with the same questions and explanations: just pick PT or EN on the card. {only} are available in English.",
+        "and": ", and ",
         "faq": [
-            ("Are the practice exams available in Portuguese?", "Courses with a PT / EN switch have an English and a Portuguese version, with the same questions and explanations. Just pick one on the course card. The others are available in English."),
+            ("Are the practice exams available in Portuguese?", "{lang_answer}"),
+            ("Which practice exam should I take first?", "Start from your goal: general cloud (CLF-C02), AI without coding (AIF-C01 and AIB-C01), architecture (SAA-C03), operations (SOA-C03), data (DEA-C01), machine learning (MLA-C02), or generative AI for developers (AIP-C01). If you are new to AWS, CLF-C02 is a good first step."),
             ("Are these the real exam questions?", "No. They are original questions written from each official exam guide, to train the same kind of reasoning the exam tests."),
-            ("Do I need to know how to code?", "Not for CLF-C02, AIF-C01, or AIB-C01. The others are Associate or Professional level and expect hands-on AWS experience. MLA-C02 and AIP-C01 also expect familiarity with machine learning and AI development."),
+            ("Do I need to know how to code?", "Not for CLF-C02, AIF-C01, or AIB-C01. The others are Associate or Professional level and expect hands-on AWS experience. DEA-C01 expects familiarity with data pipelines, and MLA-C02 and AIP-C01 expect familiarity with machine learning and AI development."),
+            ("Does the card link already apply the coupon?", "Yes. Each card link already carries the promotional coupon. Udemy coupons have an expiry date and a limited number of uses: if the full price shows up, the coupon has expired."),
             ("How long do I have access?", "On Udemy, course access is lifetime and includes updates to the practice exams."),
         ],
         "hint": "Esta página também está disponível em português.",
@@ -226,6 +237,20 @@ def course_link(c, lang):
     return f"{url}{'&' if '?' in url else '?'}couponCode={code}"
 
 
+def join_codes(codes, t):
+    """'A, B e C' (pt) ou 'A, B, and C' (en)."""
+    if len(codes) == 1:
+        return codes[0]
+    return ", ".join(codes[:-1]) + t["and"] + codes[-1]
+
+
+def faq_list(t):
+    both = [c["code"] for c in COURSES if len(c["url"]) == 2]
+    only = [c["code"] for c in COURSES if len(c["url"]) == 1]
+    ans = t["lang_some"].format(both=join_codes(both, t), only=join_codes(only, t)) if only else t["lang_all"]
+    return [(q, a.replace("{lang_answer}", ans)) for q, a in t["faq"]]
+
+
 def eff_lang(c, lang):
     """Idioma que o card mostra: o da página, ou o único que o curso tem."""
     return lang if lang in c["url"] else next(iter(c["url"]))
@@ -254,7 +279,7 @@ def jsonld(lang, t):
          "inLanguage": t["html_lang"], "author": {"@id": SITE + "#guilherme"}, "primaryImageOfPage": SITE + f"img/{OG_IMAGE[lang]}"},
         person,
         {"@type": "ItemList", "name": t["list_name"], "itemListElement": items},
-        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in t["faq"]]},
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq_list(t)]},
     ]
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
 
@@ -313,7 +338,7 @@ def page(lang):
         <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">{ICONS[i]}</svg><h3>{e(h)}</h3><p>{e(d)}</p></li>'''
                        for i, (h, d) in enumerate(t["benefits"]))
     faq = "".join(f'''
-        <details><summary>{e(q)}</summary><p>{e(a)}</p></details>''' for q, a in t["faq"])
+        <details><summary>{e(q)}</summary><p>{e(a)}</p></details>''' for q, a in faq_list(t))
 
     return f'''<!DOCTYPE html>
 <html lang="{t["html_lang"]}">

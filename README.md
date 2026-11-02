@@ -11,7 +11,8 @@ Textos, cursos e links ficam em **`tools/build_pages.py`**:
 
 - **Cursos e links da Udemy:** lista `COURSES` (um link para cada idioma). Curso que existe em um idioma só: deixe a chave do outro idioma fora de `url` e `coupon`. O card some com o botão PT / EN e mostra "em inglês". Para lançar a versão em português, é só acrescentar `pt`.
 - **Cupom:** `coupon` de cada idioma. Os números do topo (certificações, simulados, questões) são calculados sozinhos a partir da lista.
-- **Textos da página:** dicionário `TEXT` (`pt` e `en`).
+- **Textos da página:** dicionário `TEXT` (`pt` e `en`). A primeira pergunta do FAQ lista sozinha os cursos com e sem português. A pergunta "Qual simulado devo fazer primeiro?" cita os códigos à mão: atualize quando lançar um curso novo.
+- **Imagem de compartilhamento (LinkedIn, WhatsApp):** `OG_IMAGE`. Ao trocar a imagem, mude o nome do arquivo (`-v3`) e o valor em `OG_IMAGE`, porque as redes guardam a imagem antiga em cache. Para o LinkedIn atualizar a prévia de um link já colado, use o Post Inspector: https://www.linkedin.com/post-inspector/
 
 Depois de editar, gere as páginas de novo:
 
@@ -25,7 +26,7 @@ Isso reescreve `index.html`, `en/index.html` e `sitemap.xml`. Se mudar `style.cs
 
 - `style.css`: visual das duas páginas
 - `site.js`: botões PT / EN de cada curso e aviso de idioma
-- `img/`: capas dos cursos (`{id}-pt.webp` e `{id}-en.webp`, 750x422), selos (`badge-{id}.webp`, 240x240), foto e imagens de compartilhamento (`og-bilingue.jpg`, `og-en.jpg`)
+- `img/`: capas dos cursos (`{id}-pt.webp` e `{id}-en.webp`, 750x422), selos (`badge-{id}.webp`, 240x240), foto e imagens de compartilhamento 1200x630 (`og-bilingue-v2.jpg`, `og-en-v2.jpg`)
 - `fonts/`: Bricolage Grotesque e Instrument Sans (SIL Open Font License)
 - `favicon.svg`
 
